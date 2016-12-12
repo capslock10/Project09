@@ -335,7 +335,7 @@ namespace invoice_sys
                     
                     oSheet.PageSetup.Orientation = Excel.XlPageOrientation.xlLandscape;
                     oSheet.PageSetup.CenterHorizontally = true;
-                    oSheet.PageSetup.FitToPagesWide = 2;
+                    oSheet.PageSetup.FitToPagesWide = 1;
                     
                     //oSheet.PageSetup.FitToPagesTall = 1;
                     //Set the page number
@@ -466,7 +466,7 @@ namespace invoice_sys
                     else
                         table_cell = 11 + rowCount;
                     //Set the table style
-                    Excel.Range oRange6 = oSheet.Range["A" + (12 - 1), oSheet.Cells[table_cell - 1, 9]];
+                    Excel.Range oRange6 = oSheet.Range["A" + (12 - 1), oSheet.Cells[table_cell - 1, 5]];
                     Debug.WriteLine("Row Count: " + rowCount);
                     oRange6.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6.Font.Name = "Arial";
@@ -475,8 +475,58 @@ namespace invoice_sys
                     oRange6.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                                                                                                                                                                                                       
-                        oRange6.Columns.AutoFit();
+                    oRange6.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    oRange6.Columns.AutoFit();
+
+
+                    Excel.Range oRange6_2 = oSheet.Range["F" + (12 - 1), oSheet.Cells[table_cell - 1, 6]];
+                    Debug.WriteLine("Row Count: " + rowCount);
+                    oRange6_2.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_2.Font.Name = "Arial";
+                    oRange6_2.Font.Size = 10;
+                    oRange6_2.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_2.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_2.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_2.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_2.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    oRange6_2.Columns.ColumnWidth = 30.00;
+
+                    Excel.Range oRange6_3 = oSheet.Range["G" + (12 - 1), oSheet.Cells[table_cell - 1, 7]];
+                    Debug.WriteLine("Row Count: " + rowCount);
+                    oRange6_3.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_3.Font.Name = "Arial";
+                    oRange6_3.Font.Size = 10;
+                    oRange6_3.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_3.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_3.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_3.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_3.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    oRange6_3.Columns.AutoFit();
+
+                    Excel.Range oRange6_4 = oSheet.Range["H" + (12 - 1), oSheet.Cells[table_cell - 1, 8]];
+                    Debug.WriteLine("Row Count: " + rowCount);
+                    oRange6_4.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_4.Font.Name = "Arial";
+                    oRange6_4.Font.Size = 10;
+                    oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_4.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    oRange6_4.Columns.AutoFit();
+
+                    Excel.Range oRange6_5 = oSheet.Range["I" + (12 - 1), oSheet.Cells[table_cell - 1, 9]];
+                    Debug.WriteLine("Row Count: " + rowCount);
+                    oRange6_5.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_5.Font.Name = "Arial";
+                    oRange6_5.Font.Size = 10;
+                    oRange6_5.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_5.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_5.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_5.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    oRange6_5.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    oRange6_5.Columns.AutoFit();
+
 
                     Excel.Range oRange6_1 = oSheet.Range[oSheet.Cells[11, 10], oSheet.Cells[table_cell - 1, 10]];
                     Debug.WriteLine("Row Count: " + rowCount);
@@ -487,6 +537,7 @@ namespace invoice_sys
                     oRange6_1.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_1.Font.Name = "Arial";
                     oRange6_1.Font.Size = 10;
+                    oRange6_1.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                     //oRange6_1.Columns.AutoFit();
                     oRange6_1.Columns.ColumnWidth = 8.00;
 
