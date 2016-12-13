@@ -288,19 +288,22 @@ namespace invoice_sys
             {
                 try
                 {
-                    string fileTest = invoices_tb.Text + ".xlsx";
+                    string fileTest = Directory.GetCurrentDirectory() + "\\" + invoices_tb.Text + ".xlsx";
                     Boolean exist = true;
-                    int count_exist = 1;
+                    int count_exist = 0;
                     while (exist)
                     {
+
                         if (File.Exists(fileTest))
                         {
-                            fileTest = invoices_tb.Text + "(" + count_exist + ").xlsx";
+                            Debug.WriteLine("File exist");
+                            count_exist++;
                         }
                         else
                             exist = false;
+                        if (exist)
+                            fileTest = Directory.GetCurrentDirectory() + "\\" + invoices_tb.Text + "(" + count_exist + ").xlsx";
                     }
-
 
                     //The row and col number
                     int rowCount = item_grid.RowCount;
@@ -321,13 +324,15 @@ namespace invoice_sys
 
                     oApp = new Excel.Application();
                     oBook = oApp.Workbooks.Add();
-                   
-                  
-                        
-                    oSheet = (Excel.Worksheet)oBook.Worksheets.Add(After: oBook.Sheets[oBook.Sheets.Count]);
+
+                    oBook.SaveAs(fileTest);
+
+
+
+                    oSheet = (Excel.Worksheet)oBook.Worksheets.get_Item(1);
                        
                     oSheet.Name = invoices_tb.Text;
-                    oApp.Application.UserName = invoices_tb.Text;
+                   // oApp.Application.UserName = invoices_tb.Text;
                     oApp.Visible = true;
                     //Set up the excel page style, orientation and the center alignment
                     //oSheet.PageSetup.Zoom = false;
@@ -339,7 +344,7 @@ namespace invoice_sys
                     oSheet.PageSetup.LeftMargin = 0.01f;
                     oSheet.PageSetup.RightMargin = 0.01f;
                     oSheet.PageSetup.TopMargin = 0.25f;
-                    oSheet.PageSetup.BottomMargin = 0.50f;
+                    //oSheet.PageSetup.BottomMargin = 0.70f;
                     oSheet.PageSetup.FooterMargin = 0.25;
                     
                     //oSheet.PageSetup.FitToPagesTall = 1;
@@ -383,33 +388,33 @@ namespace invoice_sys
                     
                     //Set the header font style
                     Excel.Range oRange2 = oSheet.Range["A1", "A3"];
-                    oRange2.Font.Name = "Arial";
+                    oRange2.Font.Name = "Kalinga";
                     oRange2.Font.Size = 14;
                     oRange2.Font.Bold = true;
                     oRange2.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
                     //Set the invoice info range style
                     Excel.Range oRange3 = oSheet.Range["A5", "A9"];
-                    oRange3.Font.Name = "Arial";
+                    oRange3.Font.Name = "Kalinga";
                     oRange3.Font.Size = 10;
                     oRange3.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                     oRange3.Columns.ColumnWidth = 11.00;
 
                     //Set the range style ":" 
                     Excel.Range oRange4 = oSheet.Range["B5", "B9"];
-                    oRange4.Font.Name = "Arial";
+                    oRange4.Font.Name = "Kalinga";
                     oRange4.Font.Size = 10;
                     oRange4.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                     oRange4.Columns.ColumnWidth = 1.50;
 
                     //Set docket no Style
                     oSheet.Range["F9"].Font.Size = 10;
-                    oSheet.Range["F9"].Font.Name = "Arial";
+                    oSheet.Range["F9"].Font.Name = "Kalinga";
                     oSheet.Range["F9"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                     oSheet.Range["F9"].Columns.ColumnWidth = 11.00;
 
                     oSheet.Range["G9"].Font.Size = 10;
-                    oSheet.Range["G9"].Font.Name = "Arial";
+                    oSheet.Range["G9"].Font.Name = "Kalinga";
                     oSheet.Range["G9"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
       
 
@@ -455,7 +460,7 @@ namespace invoice_sys
 
                     //Set the table header style
                     Excel.Range oRange5 = oSheet.Range["A11", "J11"];
-                    oRange5.Font.Name = "Arial";
+                    oRange5.Font.Name = "Kalinga";
                     oRange5.Font.Size = 10;
                     oRange5.Font.Bold = true;
                     oRange5.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
@@ -464,17 +469,17 @@ namespace invoice_sys
                     //Determine the data is more than the table row
                     int table_row_number = 0;
 
-                    int table_cell = 29;
+                    int table_cell = 32;
 
                     if (table_cell >= (11 + rowCount))
-                        table_cell = 29;
+                        table_cell = 32;
                     else
                         table_cell = 11 + rowCount;
                     //Set the table style
                     Excel.Range oRange6 = oSheet.Range["A" + (12 - 1), oSheet.Cells[table_cell - 1, 5]];
                     Debug.WriteLine("Row Count: " + rowCount);
                     oRange6.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    oRange6.Font.Name = "Arial";
+                    oRange6.Font.Name = "Kalinga";
                     oRange6.Font.Size = 10;
                     oRange6.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -487,7 +492,7 @@ namespace invoice_sys
                     Excel.Range oRange6_2 = oSheet.Range["F" + (12 - 1), oSheet.Cells[table_cell - 1, 6]];
                     Debug.WriteLine("Row Count: " + rowCount);
                     oRange6_2.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    oRange6_2.Font.Name = "Arial";
+                    oRange6_2.Font.Name = "Kalinga";
                     oRange6_2.Font.Size = 10;
                     oRange6_2.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_2.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -499,7 +504,7 @@ namespace invoice_sys
                     Excel.Range oRange6_3 = oSheet.Range["G" + (12 - 1), oSheet.Cells[table_cell - 1, 7]];
                     Debug.WriteLine("Row Count: " + rowCount);
                     oRange6_3.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    oRange6_3.Font.Name = "Arial";
+                    oRange6_3.Font.Name = "Kalinga";
                     oRange6_3.Font.Size = 10;
                     oRange6_3.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_3.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -511,7 +516,7 @@ namespace invoice_sys
                     Excel.Range oRange6_4 = oSheet.Range["H" + (12 - 1), oSheet.Cells[table_cell - 1, 8]];
                     Debug.WriteLine("Row Count: " + rowCount);
                     oRange6_4.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    oRange6_4.Font.Name = "Arial";
+                    oRange6_4.Font.Name = "Kalinga";
                     oRange6_4.Font.Size = 10;
                     oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -523,7 +528,7 @@ namespace invoice_sys
                     Excel.Range oRange6_5 = oSheet.Range["I" + (12 - 1), oSheet.Cells[table_cell - 1, 9]];
                     Debug.WriteLine("Row Count: " + rowCount);
                     oRange6_5.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    oRange6_5.Font.Name = "Arial";
+                    oRange6_5.Font.Name = "Kalinga";
                     oRange6_5.Font.Size = 10;
                     oRange6_5.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_5.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -540,7 +545,7 @@ namespace invoice_sys
                     oRange6_1.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_1.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_1.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    oRange6_1.Font.Name = "Arial";
+                    oRange6_1.Font.Name = "Kalinga";
                     oRange6_1.Font.Size = 10;
                     oRange6_1.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                     //oRange6_1.Columns.AutoFit();
@@ -549,27 +554,28 @@ namespace invoice_sys
 
                     //Set the invoice info style
                     Excel.Range oRange7 = oSheet.Range["C5", "C9"];
-                    oRange7.Font.Name = "Arial";
+                    oRange7.Font.Name = "Kalinga";
                     oRange7.Font.Size = 10;
                     oRange7.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            
 
                     int number_record = 0;
                     oSheet.Cells[table_cell +1, 9] = "Total";
-                    oSheet.Cells[table_cell + 1, 9].Font.Name = "Arial";
+                    oSheet.Cells[table_cell + 1, 9].Font.Name = "Kalinga";
                     oSheet.Cells[table_cell + 1, 9].Font.Size = 10;
 
                     oSheet.Cells[table_cell + 1, 10] = total_amount_tb.Text;
-                    oSheet.Cells[table_cell + 1, 10].Font.Name = "Arial";
+                    oSheet.Cells[table_cell + 1, 10].Font.Name = "Kalinga";
                     oSheet.Cells[table_cell + 1, 10].Font.Size = 10;
                     Excel.Range oRange8 = oSheet.Range[oSheet.Cells[table_cell + 2, 9]];
                     oRange8.Font.Underline = Excel.XlUnderlineStyle.xlUnderlineStyleSingle;
                     oRange8.Columns.ColumnWidth = 10.00;
-                    oRange8.Font.Name = "Arial";
+                    oRange8.Font.Name = "Kalinga";
                     oRange8.Font.Size = 10;
                     double how_many_page = Convert.ToDouble(rowCount) / 19.0f ;
 
-                    oSheet.HPageBreaks.Add(oSheet.Cells[32, 10]);
-
+                    oSheet.HPageBreaks.Add(oSheet.Cells[40, 10]);
+                   
                
                    // oBook.PrintOutEx(1, sheet_page, 1, true, Type.Missing, true, false, Type.Missing);
                 }
@@ -580,7 +586,7 @@ namespace invoice_sys
                 }
                
                 //Save excel
-                //oBook.SaveAs(fileTest);
+               
 
 
                 /*int rowCount = item_grid.RowCount;
