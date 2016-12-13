@@ -336,6 +336,11 @@ namespace invoice_sys
                     oSheet.PageSetup.Orientation = Excel.XlPageOrientation.xlLandscape;
                     oSheet.PageSetup.CenterHorizontally = true;
                     oSheet.PageSetup.FitToPagesWide = 1;
+                    oSheet.PageSetup.LeftMargin = 0.01f;
+                    oSheet.PageSetup.RightMargin = 0.01f;
+                    oSheet.PageSetup.TopMargin = 0.25f;
+                    oSheet.PageSetup.BottomMargin = 0.50f;
+                    oSheet.PageSetup.FooterMargin = 0.25;
                     
                     //oSheet.PageSetup.FitToPagesTall = 1;
                     //Set the page number
@@ -513,7 +518,7 @@ namespace invoice_sys
                     oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_4.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                     oRange6_4.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-                    oRange6_4.Columns.AutoFit();
+                    oRange6_4.Columns.ColumnWidth = 12.00;
 
                     Excel.Range oRange6_5 = oSheet.Range["I" + (12 - 1), oSheet.Cells[table_cell - 1, 9]];
                     Debug.WriteLine("Row Count: " + rowCount);
@@ -539,7 +544,7 @@ namespace invoice_sys
                     oRange6_1.Font.Size = 10;
                     oRange6_1.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                     //oRange6_1.Columns.AutoFit();
-                    oRange6_1.Columns.ColumnWidth = 8.00;
+                    oRange6_1.Columns.ColumnWidth = 10;
 
 
                     //Set the invoice info style
